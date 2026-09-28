@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hair Day is a boutique hair salon in Madison, Wisconsin specializing in edgy custom color, precision cuts, makeup, and nail services.">
+    <title>Hair Day | Boutique Salon in Madison, WI</title>
+    
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Color Palette & Variables based on HD Terracotta logo */
+        :root {
+            --primary: #D1664E;          /* Terracotta Orange */
+            --primary-hover: #b8533c;    /* Deep Terracotta */
+            --primary-light: #F8EBE6;    /* Light Terracotta tint */
+            --bg-light: #FDF8F5;         /* Warm Soft Blush Cream */
+            --bg-card: #FFFFFF;          /* Pure White Card */
+            --text-dark: #2C2523;        /* Dark Slate/Charcoal */
+            --text-muted: #6B625E;       /* Muted Slate Gray */
+            --border-color: #EFE4DF;     /* Soft Border Outline */
+            --shadow-sm: 0 4px 12px rgba(44, 37, 35, 0.05);
+            --shadow-lg: 0 12px 32px rgba(209, 102, 78, 0.12);
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --radius-md: 12px;
+            --radius-lg: 20px;
+        }
+
+        /* Global Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Layout Helpers */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.75rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #FFFFFF;
+            box-shadow: 0 4px 15px rgba(209, 102, 78, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(209, 102, 78, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-dark);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: #FFFFFF;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(253, 248, 245, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        /* Recreated Vector SVG Logo matching uploaded Artboard logos */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-svg-wrapper {
+            height: 48px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Hamburger Icon */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        .notice-banner {
+            background-color: var(--primary-light);
+            color: var(--primary-hover);
+            padding: 0.6rem 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid rgba(209, 102, 78, 0.15);
+        }
+
+        .hero {
+            padding: 5rem 0 4rem;
+            background: linear-gradient(135deg, rgba(253, 248, 245, 1) 0%, rgba(248, 235, 230, 0.6) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            line-height: 1.15;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 540px;
+        }
+
+        .hero-badge-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .hero-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.88rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .hero-badge i {
+            color: var(--primary);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-img-card {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .hero-img-card img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .floating-card {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            background: var(--bg-card);
+            padding: 1.25rem 1.5rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: floatAnim 4s ease-in-out infinite;
+        }
+
+        @keyframes floatAnim {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .floating-card .icon-box {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .services-section {
+            padding: 6rem 0;
+            background-color: var(--bg-card);
+        }
+
+        .services-header {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 3.5rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--bg-light);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem 2rem;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .service-card.highlight {
+            background: linear-gradient(180deg, var(--primary-light) 0%, var(--bg-card) 100%);
+            border: 2px solid var(--primary);
+        }
+
+        .service-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #FFFFFF;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 1rem;
+        }
+
+        .service-features li {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-features li i {
+            color: var(--primary);
+            font-size: 0.8rem;
+        }
+
+        .team-section {
+            padding: 6rem 0;
+            background-color: var(--bg-light);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .team-story {
+            padding-right: 1.5rem;
+        }
+
+        .team-story p {
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+        }
+
+        .founders-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .founder-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+        }
+
+        .founder-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .founder-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .founder-info {
+            padding: 1.25rem;
+        }
+
+        .founder-info h4 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+        }
+
+        .founder-info span {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Staff roster counter pill bar */
+        .staff-counter-bar {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .counter-item h3 {
+            font-size: 2.25rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .counter-item p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .tutorials-section {
+            padding: 6rem 0;
+            background-color: var(--bg-card);
+        }
+
+        .tutorials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .tutorial-card {
+            background-color: var(--bg-light);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+        }
+
+        .tutorial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tutorial-img {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .tutorial-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .tutorial-card:hover .tutorial-img img {
+            transform: scale(1.05);
+        }
+
+        .play-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(44, 37, 35, 0.85);
+            color: white;
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .tutorial-body {
+            padding: 1.5rem;
+        }
+
+        .tutorial-body .category {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tutorial-body h4 {
+            font-size: 1.15rem;
+            margin: 0.5rem 0;
+            line-height: 1.3;
+        }
+
+        .tutorial-body p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-link {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: var(--transition-smooth);
+        }
+
+        .tutorial-link:hover {
+            gap: 0.7rem;
+        }
+
+        footer {
+            background-color: var(--text-dark);
+            color: #FFFFFF;
+            padding: 5rem 0 2rem;
+            border-top: 3px solid var(--primary);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Exact 2 half-width columns */
+            gap: 4rem;
+            padding-bottom: 3.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-about {
+            color: #C2B8B4;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            max-width: 480px;
+        }
+
+        .hours-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            font-size: 0.9rem;
+            color: #D3C9C5;
+            border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
+            max-width: 360px;
+        }
+
+        .hours-list span.day {
+            font-weight: 600;
+        }
+
+        .footer-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            margin-bottom: 1.5rem;
+            color: #FFFFFF;
+        }
+
+        .contact-info-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: #D3C9C5;
+            font-size: 0.95rem;
+        }
+
+        .contact-info-list i {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-top: 0.2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #9E9490;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 37, 35, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-smooth);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .booking-modal {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 550px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            transform: translateY(20px);
+            transition: var(--transition-smooth);
+        }
+
+        .modal-overlay.active .booking-modal {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background-color: var(--bg-light);
+            transition: var(--transition-smooth);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background-color: #FFFFFF;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .alert-box {
+            display: none;
+            padding: 1rem;
+            border-radius: 8px;
+            background-color: #E6F4EA;
+            color: #137333;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        @media (max-width: 992px) {
+            .hero-grid, .team-grid {
+                grid-template-columns: 1fr;
+            }
+            .services-grid, .tutorials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-title {
+                font-size: 2.75rem;
+            }
+            .hero-img-card img {
+                height: 380px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Collapsed mobile menu */
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-card);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: var(--shadow-lg);
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .services-grid, .tutorials-grid, .founders-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .staff-counter-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr; /* Stacked on mobile */
+                gap: 2.5rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Notification Top Bar regarding limited appointments -->
+    <div class="notice-banner">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Color appointments are limited and book quickly! Reserve far in advance to secure your preferred date.</span>
+    </div>
+
+    <header>
+        <div class="container nav-container">
+            <!-- Brand Logo based on supplied HD Artboards -->
+            <a href="#" class="logo" aria-label="Hair Day Home">
+                <svg class="logo-svg-wrapper" viewBox="0 0 280 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Left H letter -->
+                    <path d="M 15,10 L 48,10 L 48,78 L 92,78 L 92,10 L 125,10 L 125,170 L 92,170 L 92,104 L 48,104 L 48,170 L 15,170 Z" fill="#D1664E"/>
+                    <!-- Vertical HAIR DAY text -->
+                    <text x="140" y="32" fill="#D1664E" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="19" letter-spacing="9">H</text>
+                    <text x="140" y="62" fill="#D1664E" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="19" letter-spacing="9">A</text>
+                    <text x="140" y="92" fill="#D1664E" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="19" letter-spacing="9">I</text>
+                    <text x="140" y="122" fill="#D1664E" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="19" letter-spacing="9">R</text>
+                    <text x="140" y="156" fill="#D1664E" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="19" letter-spacing="9">D</text>
+                    <text x="140" y="186" fill="#D1664E" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="19" letter-spacing="9">A</text>
+                    <text x="140" y="216" fill="#D1664E" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="19" letter-spacing="9">Y</text>
+                    <!-- Right D letter -->
+                    <path d="M 175,10 L 225,10 C 265,10 280,35 280,90 C 280,145 265,170 225,170 L 175,170 Z M 208,38 L 208,142 L 223,142 C 243,142 248,125 248,90 C 248,55 243,38 223,38 Z" fill="#D1664E"/>
+                </svg>
+            </a>
+
+            <!-- Navigation Bar links -->
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="#tutorials">Tutorials</a></li>
+                    <li><a href="#contact">Location</a></li>
+                </ul>
+            </nav>
+
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <button class="btn btn-primary" id="openBookingBtn">
+                    <i class="fa-regular fa-calendar-plus"></i> Book Appointment
+                </button>
+                <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="about">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <span class="section-tag">Boutique Salon • Madison, WI</span>
+                        <h1 class="hero-title">Edgy colors. On-trend cuts. A treat-yourself atmosphere.</h1>
+                        <p class="hero-subtitle">
+                            Welcome to Hair Day! Located in the heart of Madison, Wisconsin, we are a boutique hair salon specializing in custom vibrant coloring, modern cuts, professional makeup, and nail artistry in a warm, relaxing space.
+                        </p>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <button class="btn btn-primary open-modal-trigger">
+                                Reserve Your Spot
+                            </button>
+                            <a href="#tutorials" class="btn btn-outline">
+                                Watch Tutorials <i class="fa-solid fa-play" style="font-size: 0.8rem;"></i>
+                            </a>
+                        </div>
+
+                        <div class="hero-badge-group">
+                            <div class="hero-badge">
+                                <i class="fa-solid fa-shield-halved"></i> Certified Colorists
+                            </div>
+                            <div class="hero-badge">
+                                <i class="fa-solid fa-spa"></i> Relaxing Environment
+                            </div>
+                            <div class="hero-badge">
+                                <i class="fa-solid fa-star"></i> Madison Favorite
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-image-wrapper">
+                        <div class="hero-img-card">
+                            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1000&q=80" alt="Hair Day Salon Interior in Madison WI" onerror="this.src='https://placehold.co/600x800/D1664E/FFFFFF?text=Hair+Day+Salon'">
+                        </div>
+                        <div class="floating-card">
+                            <div class="icon-box">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <div>
+                                <strong style="display: block; font-size: 0.95rem;">Edgy Custom Colors</strong>
+                                <span style="font-size: 0.8rem; color: var(--text-muted);">Limited weekly openings</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-section" id="services">
+            <div class="container">
+                <div class="services-header">
+                    <span class="section-tag">What We Offer</span>
+                    <h2 class="section-title">Boutique Beauty Services</h2>
+                    <p style="color: var(--text-muted);">Crafted with precision and tailored individually to pamper you from head to toe.</p>
+                </div>
+
+                <!-- Required 3-Column Layout -->
+                <div class="services-grid">
+                    <!-- Column 1: Hair Cuts & Styling -->
+                    <article class="service-card">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-scissors"></i>
+                        </div>
+                        <h3>On-Trend Cuts & Styling</h3>
+                        <p>From textured shags and sleek bobs to precision trims and blowouts. Designed to match your personality and everyday style.</p>
+                        <ul class="service-features">
+                            <li><i class="fa-solid fa-check"></i> Precision Layering & Cuts</li>
+                            <li><i class="fa-solid fa-check"></i> Blowouts & Event Styling</li>
+                            <li><i class="fa-solid fa-check"></i> Deep Conditioning Treatments</li>
+                        </ul>
+                        <button class="btn btn-outline open-modal-trigger" style="width: 100%;">Book Cut</button>
+                    </article>
+
+                    <!-- Column 2: Edgy Custom Color (Highlighted Signature Service) -->
+                    <article class="service-card highlight">
+                        <span class="service-badge">Signature</span>
+                        <div class="service-icon">
+                            <i class="fa-solid fa-palette"></i>
+                        </div>
+                        <h3>Edgy Custom Color</h3>
+                        <p>Our specialty. Vibrant balayage, pastel transformations, double-process blonding, and custom foil techniques by master colorists.</p>
+                        <ul class="service-features">
+                            <li><i class="fa-solid fa-check"></i> Vivid & Pastel Color Shifts</li>
+                            <li><i class="fa-solid fa-check"></i> Custom Balayage & Ombré</li>
+                            <li><i class="fa-solid fa-check"></i> Olaplex Bond Building</li>
+                        </ul>
+                        <button class="btn btn-primary open-modal-trigger" style="width: 100%;">Reserve Color Spot</button>
+                    </article>
+
+                    <!-- Column 3: Nails & Makeup -->
+                    <article class="service-card">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-brush"></i>
+                        </div>
+                        <h3>Nails & Glam Makeup</h3>
+                        <p>Complete your look with our full-service manicures, nail extensions, art, and makeup application for events or night outs.</p>
+                        <ul class="service-features">
+                            <li><i class="fa-solid fa-check"></i> Gel & Acrylic Nail Art</li>
+                            <li><i class="fa-solid fa-check"></i> Event & Bridal Makeup</li>
+                            <li><i class="fa-solid fa-check"></i> Express Touch-Up Services</li>
+                        </ul>
+                        <button class="btn btn-outline open-modal-trigger" style="width: 100%;">Book Glam</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section" id="team">
+            <div class="container">
+                <div class="team-grid">
+                    <div class="team-story">
+                        <span class="section-tag">Our Story & Culture</span>
+                        <h2 class="section-title">Meet Pria, Garry & The Hair Day Family</h2>
+                        <p>
+                            Pria earned her master certificate as a colorist and immediately set out to specialize in bold, custom color transformations. Driven by a desire to craft an intimate "treat yourself" sanctuary, she opened Hair Day alongside her good friend and veteran hairdresser, Garry.
+                        </p>
+                        <p>
+                            Together, they built a cozy boutique environment where clients leave feeling refreshed, confident, and inspired.
+                        </p>
+                    </div>
+
+                    <div class="founders-cards">
+                        <!-- Founder 1: Pria -->
+                        <div class="founder-card">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Pria - Founder and Lead Colorist" onerror="this.src='https://placehold.co/400x500/D1664E/FFFFFF?text=Pria'">
+                            <div class="founder-info">
+                                <h4>Pria</h4>
+                                <span>Co-Founder & Master Colorist</span>
+                            </div>
+                        </div>
+
+                        <!-- Founder 2: Garry -->
+                        <div class="founder-card">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Garry - Co-founder and Stylist" onerror="this.src='https://placehold.co/400x500/2C2523/FFFFFF?text=Garry'">
+                            <div class="founder-info">
+                                <h4>Garry</h4>
+                                <span>Co-Founder & Senior Stylist</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Staff Numbers Breakdown -->
+                <div class="staff-counter-bar">
+                    <div class="counter-item">
+                        <h3>3</h3>
+                        <p>Master Colorists</p>
+                    </div>
+                    <div class="counter-item">
+                        <h3>2</h3>
+                        <p>Senior Stylists</p>
+                    </div>
+                    <div class="counter-item">
+                        <h3>1</h3>
+                        <p>Nail Specialist</p>
+                    </div>
+                    <div class="counter-item">
+                        <h3>1</h3>
+                        <p>Makeup Artist</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tutorials-section" id="tutorials">
+            <div class="container">
+                <div class="services-header">
+                    <span class="section-tag">Stay Inspired Between Visits</span>
+                    <h2 class="section-title">Makeup & Nail Tutorials</h2>
+                    <p style="color: var(--text-muted);">Our specialists share their favorite pro-tips and step-by-step guides so you can maintain your glow at home.</p>
+                </div>
+
+                <div class="tutorials-grid">
+                    <!-- Tutorial 1 -->
+                    <article class="tutorial-card">
+                        <div class="tutorial-img">
+                            <span class="play-tag"><i class="fa-solid fa-play"></i> 4 min watch</span>
+                            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80" alt="Makeup Tutorial" onerror="this.src='https://placehold.co/600x400/D1664E/FFFFFF?text=Makeup+Tips'">
+                        </div>
+                        <div class="tutorial-body">
+                            <span class="category">Makeup Masterclass</span>
+                            <h4>Effortless 10-Minute Everyday Glow</h4>
+                            <p>Our resident makeup artist breaks down quick highlighting and blush techniques for busy mornings.</p>
+                            <a href="#" class="tutorial-link" onclick="event.preventDefault(); alert('Video playback starting soon!');">Watch Tutorial <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Tutorial 2 -->
+                    <article class="tutorial-card">
+                        <div class="tutorial-img">
+                            <span class="play-tag"><i class="fa-solid fa-play"></i> 6 min watch</span>
+                            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=600&q=80" alt="Nail Art Tutorial" onerror="this.src='https://placehold.co/600x400/2C2523/FFFFFF?text=Nail+Care'">
+                        </div>
+                        <div class="tutorial-body">
+                            <span class="category">Nail Care & Art</span>
+                            <h4>At-Home Cuticle Care & Gel Removal</h4>
+                            <p>Learn how to safely maintain nail health and prevent chipping between your manicure sessions.</p>
+                            <a href="#" class="tutorial-link" onclick="event.preventDefault(); alert('Video playback starting soon!');">Watch Tutorial <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Tutorial 3 -->
+                    <article class="tutorial-card">
+                        <div class="tutorial-img">
+                            <span class="play-tag"><i class="fa-solid fa-play"></i> 5 min watch</span>
+                            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" alt="Color Maintenance" onerror="this.src='https://placehold.co/600x400/D1664E/FFFFFF?text=Color+Care'">
+                        </div>
+                        <div class="tutorial-body">
+                            <span class="category">Hair Care</span>
+                            <h4>Protecting Vibrant & Edgy Hair Tones</h4>
+                            <p>Pria's top recommended sulfate-free routines to keep your bright custom colors vibrant longer.</p>
+                            <a href="#" class="tutorial-link" onclick="event.preventDefault(); alert('Video playback starting soon!');">Watch Tutorial <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <!-- 2 Half-Width Columns Structure -->
+            <div class="footer-grid">
+                
+                <!-- Column 1: About & Hours -->
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <svg style="height: 40px; width: auto;" viewBox="0 0 280 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 15,10 L 48,10 L 48,78 L 92,78 L 92,10 L 125,10 L 125,170 L 92,170 L 92,104 L 48,104 L 48,170 L 15,170 Z" fill="#FFFFFF"/>
+                            <text x="140" y="32" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="19" letter-spacing="9">H</text>
+                            <text x="140" y="62" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="19" letter-spacing="9">A</text>
+                            <text x="140" y="92" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="19" letter-spacing="9">I</text>
+                            <text x="140" y="122" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="19" letter-spacing="9">R</text>
+                            <text x="140" y="156" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="19" letter-spacing="9">D</text>
+                            <text x="140" y="186" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="19" letter-spacing="9">A</text>
+                            <text x="140" y="216" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="19" letter-spacing="9">Y</text>
+                            <path d="M 175,10 L 225,10 C 265,10 280,35 280,90 C 280,145 265,170 225,170 L 175,170 Z M 208,38 L 208,142 L 223,142 C 243,142 248,125 248,90 C 248,55 243,38 223,38 Z" fill="#FFFFFF"/>
+                        </svg>
+                    </div>
+                    <p class="footer-about">
+                        Hair Day is a premier boutique hair salon in Madison, Wisconsin. We take pride in creating an inviting, relaxing environment dedicated to custom hair color, cuts, makeup, and nails.
+                    </p>
+                    <h4 class="footer-heading" style="font-size: 1.1rem; margin-bottom: 0.5rem;">Salon Hours</h4>
+                    <ul class="hours-list">
+                        <li><span class="day">Tuesday – Friday</span> <span>9:00 AM – 7:00 PM</span></li>
+                        <li><span class="day">Saturday</span> <span>8:00 AM – 5:00 PM</span></li>
+                        <li><span class="day">Sunday – Monday</span> <span>Closed</span></li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: Contact & Location Info -->
+                <div class="footer-col">
+                    <h3 class="footer-heading">Get In Touch</h3>
+                    <ul class="contact-info-list">
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>412 State Street, Madison, WI 53703</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <span>(608) 555-0198</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>hello@hairdaymadison.com</span>
+                        </li>
+                    </ul>
+
+                    <h4 class="footer-heading" style="font-size: 1.1rem; margin-bottom: 1rem;">Follow Our Work</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+                        <a href="#" class="social-icon" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Hair Day Salon LLC. All rights reserved.</p>
+                <p>Designed for Madison, WI</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="bookingModal">
+        <div class="booking-modal">
+            <button class="close-modal" id="closeModalBtn">&times;</button>
+            <h3 style="font-size: 1.75rem; margin-bottom: 0.5rem; color: var(--text-dark);">Book Your Hair Day</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">Note: Color appointments are limited. We will confirm your slot within 24 hours.</p>
+
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" class="form-control" required placeholder="Jane Doe">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" required placeholder="jane@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" required placeholder="(608) 555-0123">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="serviceSelect">Service Requested</label>
+                    <select id="serviceSelect" class="form-control" required>
+                        <option value="">Select a service...</option>
+                        <option value="color">Edgy Custom Color Transformation</option>
+                        <option value="cut">Precision Haircut & Style</option>
+                        <option value="nails">Nail Art / Manicure</option>
+                        <option value="makeup">Glam Makeup Service</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="preferredDate">Preferred Date</label>
+                    <input type="date" id="preferredDate" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                    Submit Appointment Request
+                </button>
+            </form>
+
+            <div class="alert-box" id="successAlert">
+                <i class="fa-solid fa-circle-check"></i> Request received! Pria & the team will reach out to confirm.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle logic
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+
+            // Booking Modal functionality
+            const modal = document.getElementById('bookingModal');
+            const openBtns = document.querySelectorAll('.open-modal-trigger, #openBookingBtn');
+            const closeBtn = document.getElementById('closeModalBtn');
+            const bookingForm = document.getElementById('bookingForm');
+            const successAlert = document.getElementById('successAlert');
+
+            openBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    modal.classList.add('active');
+                });
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+
+            // Form Submit handling without page refresh
+            bookingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                bookingForm.style.display = 'none';
+                successAlert.style.display = 'block';
+
+                setTimeout(() => {
+                    modal.classList.remove('active');
+                    setTimeout(() => {
+                        bookingForm.style.display = 'block';
+                        successAlert.style.display = 'none';
+                        bookingForm.reset();
+                    }, 500);
+                }, 2500);
+            });
+        });
+    </script>
+</body>
+</html>
